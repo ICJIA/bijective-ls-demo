@@ -69,8 +69,8 @@
 	<table class="table pmd-table">
 		<thead style="background: #aaa;">
 			<tr>
-				<th class="heavy">INFO</th>
-				<th class="heavy">RESULT</th>
+				<th class="heavy" style="width: 25%">INFO</th>
+				<th class="heavy" style="width: 75%">RESULT</th>
 
 			</tr>
 		</thead>
@@ -90,7 +90,7 @@
 
       <tr>
         <td class="medium">Conversion</td>
-        <td>Base <sub>10</sub> < > Base <sub>{{base}}</sub></td>
+        <td>Base <sub>10</sub> -- Base <sub>{{base}}</sub></td>
       </tr>
 
 
@@ -133,20 +133,24 @@ export default {
   name: 'hello',
   created: function () {
     if (NODE_ENV === 'production') {
-          this.siteBase = `https://xyz.icjia.cloud/`
+          this.siteBase = `https://bls.icjia.cloud/`
       } else {
           this.siteBase = `http://localhost:8080/`
       }
   },
   mounted: function () {
-    this.init();
+    this.status = "mounted"
+    this.alphabet =  baseConv.getAlphabet();
+    this.databaseId = random.integer(1000, 99999)
+    this.base = this.alphabet.length
+    this.encodedId = baseConv.encode(this.databaseId)
+    this.decodedId = baseConv.decode(this.encodedId)
+    this.redirectUrl = this.siteBase + this.encodedId
+    //console.log(getAlphahet())
   },
   methods: {
     init: function () {
-      this.status = "mounted"
-      this.encodedId = baseConv.encode(this.databaseId)
-      this.decodedId = baseConv.decode(this.encodedId)
-      this.redirectUrl = this.siteBase + this.encodedId
+
     },
     generateDatabaseId: function () {
       this.databaseId = random.integer(1000, 99999)
@@ -191,11 +195,11 @@ export default {
   },
   data () {
     return {
-      alphabet: baseConv.getAlphabet(),
-      isUnique: baseConv.isUnique(this.setAlphabet),
+      alphabet: '',
+      isUnique: true,
       status: '',
-      base: baseConv.getBase(),
-      databaseId: random.integer(1000, 99999),
+      base: 0,
+      databaseId: 0,
       encodedId: '',
       decodedId: 0,
       isInteger: true,
