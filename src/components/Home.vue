@@ -1,6 +1,6 @@
 <template>
   <div id="home">
-    <div class="container">
+    <div class="container" style="margin-top: 30px;">
       <div class="row">
       <div class="col-md-12">
 
@@ -64,8 +64,11 @@
 
 </div>
 
+<div class="container" style="margin-top: 60px;">
+  <div class="row">
+  <div class="col-md-12">
 
-<div class="pmd-table-card pmd-card pmd-z-depth" style="margin-top: 100px;">
+<div class="pmd-table-card pmd-card pmd-z-depth">
 	<table class="table pmd-table">
 		<thead style="background: #aaa;">
 			<tr>
@@ -114,7 +117,9 @@
 		</tbody>
 	</table>
 </div>
-
+</div>
+</div>
+</div>
 
 
 
