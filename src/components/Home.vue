@@ -2,7 +2,7 @@
   <div id="home">
     <div class="container" style="margin-top: 30px;">
       <div class="row">
-      <div class="col-md-12">
+      <div class="col-md-8">
 
 
 
@@ -22,32 +22,47 @@
 
 
 
+<div class="col-md-4">
+
+  <div class="form-group">
+
+    <div>
+<input type="text" style="width: 100%" v-model.number="databaseId" @keyup.delete="update" v-on:keypress="update" onkeyup="this.value=this.value.replace(/[^\d]/,'')">
+</div>
+<button type="button" class="btn btn-primary"  style="margin-top: 10px" v-on:click.prevent="generateDatabaseId()">Random database ID</button>
+
+
+
+</div>
+
+</div>
+
+
+
+
+
     </div>
 
-    <div class="row">
-      <div class="col-md-4">
+    <div class="row" style="margin-top: 50px;">
 
-        <div class="form-group">
-
-          <div>
-      <input type="text" style="width: 100%" v-model.number="databaseId" @keyup.delete="update" v-on:keypress="update" onkeyup="this.value=this.value.replace(/[^\d]/,'')">
-      </div>
-      <button type="button" class="btn btn-primary"  style="margin-top: 10px" v-on:click.prevent="generateDatabaseId()">Random database ID</button>
-
-
-
-      </div>
-
-      </div>
 
       <div class="col-md-4">
-          <h3 style="background: #fff; margin: 0; padding: 0; border: 1px solid #aaa; padding: 5px; font-weight: 900">{{encodedId}}</h3>
+          <h3 style="background: #fff; margin: 0; padding: 0; border: 1px solid #aaa; padding: 5px; font-weight: 900" class="show-disabled">{{destinationUrl}}</h3>
+          <h3 style="margin: 0; font-weight: 900; padding: 0; margin-top: 15px; text-transform: uppercase;">Destination URL</h3>
+      </div>
+
+
+
+
+
+      <div class="col-md-4">
+          <h3 style="background: #fff; margin: 0; padding: 0; border: 1px solid #aaa; padding: 5px; font-weight: 900" class="show-disabled">{{encodedId}}</h3>
           <h3 style="margin: 0; font-weight: 900; padding: 0; margin-top: 15px; text-transform: uppercase;">Encoded Database Id</h3>
       </div>
 
 
       <div class="col-md-4">
-          <h3 style="background: #fff; margin: 0; padding: 0; border: 1px solid #aaa; padding: 5px; font-weight: 900">{{decodedId}}</h3>
+          <h3 style="background: #fff; margin: 0; padding: 0; border: 1px solid #aaa; padding: 5px; font-weight: 900" class="show-disabled">{{decodedId}}</h3>
           <h3 style="margin: 0; font-weight: 900; padding: 0; margin-top: 15px; text-transform: uppercase;">Decoded Database Id</h3>
       </div>
 </div>
@@ -55,7 +70,10 @@
 <div class="row" style="margin-top: 50px;">
   <div class="col-md-12">
     <div class="text-center">
-      <h3 style="font-weight: 900; font-size: 36px;">{{redirectUrl}}</h3>
+      <ul>
+        <li>Insert <strong>databaseId:</strong> <span class="code">{{databaseId}}</span>, <strong>encodedId</strong>: <span class="code">{{encodedId}}</span> and <strong>destinationUrl</strong>: <span class="code">{{destinationUrl}}</span> into database</li>
+        <li style="margin-top: 30px;">Display shortlink: <span class="code"><a :href="redirectUrl">{{redirectUrl}}</a></span></li>
+      </ul>
 
     </div>
   </div>
@@ -91,6 +109,7 @@
         <td>{{isUnique}}</td>
       </tr>
 
+
       <tr>
         <td class="medium">Conversion</td>
         <td>Base <sub>10</sub> -- Base <sub>{{base}}</sub></td>
@@ -108,11 +127,15 @@
       </tr>
       <tr>
         <td class="medium">Decoded database Id</td>
-        <td>{{decodedId}}</td>
+        <td>{{decodedId}} <span v-if="databaseId === decodedId">(matches original databaseID: {{databaseId}})</span></td>
       </tr>
       <tr>
         <td class="medium">Example short link:</td>
         <td><a :href="redirectUrl">{{redirectUrl}}</a></td>
+      </tr>
+      <tr>
+        <td class="medium">Example destination url:</td>
+        <td>{{destinationUrl}}</td>
       </tr>
 		</tbody>
 	</table>
@@ -211,7 +234,8 @@ export default {
       isPositive: true,
       isUnique: true,
       siteBase: '',
-      redirectUrl: ''
+      redirectUrl: '',
+      destinationUrl: 'http://www.amazon.com'
     }
   }
 }
@@ -223,4 +247,9 @@ export default {
 .resultcol {width: 80%}
 .heavy {font-size: 18px !important;font-weight: 900 !important; color: #fff !important}
 .medium {font-weight: 700 !important;}
+.code {background: #ccc; font-weight: 900; padding: 3px 10px}
+.show-disabled:hover {
+    cursor:not-allowed
+ }
+ ul li {margin-top: 20px;}
 </style>
