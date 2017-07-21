@@ -133,7 +133,7 @@ export default {
   name: 'hello',
   created: function () {
     if (NODE_ENV === 'production') {
-          this.siteBase = `https://bls.icjia.cloud/`
+          this.siteBase = `http://ls.icjia.cloud/`
       } else {
           this.siteBase = `http://localhost:8080/`
       }
