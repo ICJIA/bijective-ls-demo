@@ -29,7 +29,8 @@ module.exports = merge(baseWebpackConfig, {
       filename: 'index.html',
       template: 'index.ejs',
       inject: false,
-      appMountId: 'app'
+      appMountId: 'app',
+      title: 'Bijective Link Shortener Demo',
     }),
     new FriendlyErrorsPlugin()
   ]

@@ -2,6 +2,11 @@
   <div id="home">
     <div class="container" style="margin-top: 30px;">
       <div class="row">
+        <div class="col-md12 text-center">
+          <h1 style="font-weight: 900">Bijective Link Shortener Demo</h1>
+        </div>
+      </div>
+      <div class="row" style="margin-top: 50px;">
       <div class="col-md-8">
 
 

@@ -54,6 +54,7 @@ var webpackConfig = merge(baseWebpackConfig, {
       template: 'index.ejs',
       inject: false,
       appMountId: 'app',
+      title: 'Bijective Link Shortener Demo',
       minify: {
         removeComments: true,
         collapseWhitespace: true,
