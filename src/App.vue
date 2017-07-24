@@ -17,5 +17,7 @@ export default {
 </script>
 
 <style>
+body {background: #ddd; font-family: 'Roboto', sans-serif;}
+footer {margin-top: 30px;}
 .footer-text {font-size: 14px; margin-bottom: 30px}
 </style>

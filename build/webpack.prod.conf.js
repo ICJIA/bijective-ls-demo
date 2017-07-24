@@ -8,6 +8,7 @@ var CopyWebpackPlugin = require('copy-webpack-plugin')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
+// const HtmlCriticalPlugin = require("../html-critical-webpack-plugin");
 
 var env = config.build.env
 
@@ -91,6 +92,7 @@ var webpackConfig = merge(baseWebpackConfig, {
             from: path.resolve(__dirname, '../_redirects'),
             to: './' },
       ]),
+
     // copy custom static assets
     new CopyWebpackPlugin([
       {
@@ -98,7 +100,23 @@ var webpackConfig = merge(baseWebpackConfig, {
         to: config.build.assetsSubDirectory,
         ignore: ['.*']
       }
-    ])
+    ]),
+    // new HtmlCriticalPlugin([
+    //   {
+    //   base: path.join(path.resolve(__dirname), 'dist/'),
+    //   src: './dist/',
+    //   dest: 'index.html',
+    //   inline: true,
+    //   minify: true,
+    //   extract: true,
+    //   width: 375,
+    //   height: 565,
+    //   penthouse: {
+    //     blockJSRequests: false,
+    //   }
+    //   }
+    // ]),
+
   ]
 })
 
